@@ -50,19 +50,25 @@
     <maven.compiler.source>1.7</maven.compiler.source>
                 
     
-    
-    <maven.compiler.target>1.7</maven.compiler.target>
+    <spring-cloud.version>2022.0.0</spring-cloud.version>
+    <spring-boot.version>3.0.1</spring-boot.version>
+    <maven.compiler.target>17</maven.compiler.target>
               
   
   
   </properties>
         
   
-  
+  <dependencyManagement>
   <dependencies>
                 
     
-    
+    <dependency>
+    <groupId>org.jetbrains</groupId>
+    <artifactId>annotations</artifactId>
+    <scope>provided</scope>
+    <version>23.1.0</version>
+</dependency>
     <dependency>
                         
       
@@ -85,11 +91,26 @@
     
     </dependency>
               
+ <dependency>
+  <groupId>org.springframework.cloud</groupId>
+  <artifactId>spring-cloud-dependencies</artifactId>
+  <version>${spring-cloud.version}</version>
+  <type>pom</type>
+  <scope>import</scope>
+</dependency>
+
+<dependency>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-dependencies</artifactId>
+  <version>${spring-boot.version}</version>
+  <type>pom</type>
+  <scope>import</scope>
+</dependency>
   
   
   </dependencies>
         
-  
+  </dependencyManagement>
   
   <build>
                 
@@ -154,7 +175,7 @@
                                         
           
           
-          <version>3.8.0</version>
+          <version>3.11.0</version>
                                       
         
         
