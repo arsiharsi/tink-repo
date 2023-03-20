@@ -1,1 +1,6 @@
+app\LinkParserController.class
+META-INF\spring.components
+app\LinkParserApplication.class
 arsi\backend\App.class
+configuration\ApplicationConfig.class
+META-INF\spring-configuration-metadata.json
