@@ -1,13 +1,20 @@
 package arsi.backend;
 
+import java.util.Scanner;
+
 /**
- * Hello world!
+ * Так же можно затестить в LinkParserApplication
  *
  */
 public class App 
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Введите ссылку: ");
+        String URL = sc.nextLine();
+        BackendLinkParser linkParser = new BackendLinkParser(URL);
+        System.out.println(linkParser.getData());
     }
 }
