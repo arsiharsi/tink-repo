@@ -1,5 +1,6 @@
 package arsi.backend;
 
+import java.net.URISyntaxException;
 import java.util.Scanner;
 
 /**
@@ -8,8 +9,7 @@ import java.util.Scanner;
  */
 public class App 
 {
-    public static void main( String[] args )
-    {
+    public static void main( String[] args ) throws URISyntaxException {
 
         Scanner sc = new Scanner(System.in);
         System.out.println("Введите ссылку: ");
