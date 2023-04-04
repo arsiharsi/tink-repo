@@ -17,37 +17,10 @@ import java.util.List;
 public class TgBot {
     TelegramBot bot = new TelegramBot("6201413186:AAGMfU2EOz8dBCRjRd0FqSGsFXu96gOi6kA");
     public void startBot(){
-        bot.setUpdatesListener(new UpdatesListener() {
-            @Override
-            public int process(List<Update> updates) {
-                updates.forEach(update ->{
-                            if (update.message()==null){
-                                return;
-                            }
-                            String msg = update.message().text();
-                            System.out.println(msg);
-                            String helpMsg = "/help - вывести окно с командами\n" +
-                                    "/track - начать отслеживание ссылки\n" +
-                                    "/untrack - прекратить отслеживание ссылки\n" +
-                                    "/list - показать список отслеживаемых ссылок";
-                            switch (msg){
-                                case "/help" -> bot.execute(new SendMessage(update.message().chat().id(), helpMsg));
-                                case "/start" -> bot.execute(new SendMessage(update.message().chat().id(), "Запущен"));
-                                case "/track" -> bot.execute(new SendMessage(update.message().chat().id(), "затречить"));
-                                case "/untrack" -> bot.execute(new SendMessage(update.message().chat().id(), "не тречить"));
-                                case "/list" -> bot.execute(new SendMessage(update.message().chat().id(), "список"));
-                                default -> bot.execute(new SendMessage(update.message().chat().id(), "/help - для вызова списка команд"));
-                            }
-                        }
+        TgBotMethods tgBotMethods = new TgBotMethods();
+        tgBotMethods.setBot(bot);
+        tgBotMethods.setUpdateListener();
 
-                );
-
-
-
-                return UpdatesListener.CONFIRMED_UPDATES_ALL;
-            }
-
-        });
 
         BotCommand[] botCommands = {new BotCommand("help","вывести окно с командами"),
         new BotCommand("track","начать отслеживание ссылки"),
