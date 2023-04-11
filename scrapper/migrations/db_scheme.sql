@@ -1,0 +1,19 @@
+CREATE TABLE IF NOT EXISTS chats (
+ id BIGINT PRIMARY KEY
+ chat_id BIGINT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS links (
+ id BIGINT PRIMARY KEY,
+ chat_id BIGINT NOT NULL FOREIGN KEY
+ link_url VARCHAR ( 255 ) NOT NULL
+);
+
+CREATE TABLE chat_links (
+
+chat_id BIGINT NOT NULL,
+link_id BIGINT NOT NULL,
+
+ FOREIGN KEY (chat_id) REFERENCES chats (chat_id),
+ FOREIGN KEY (link_id) REFERENCES links (id)
+);
