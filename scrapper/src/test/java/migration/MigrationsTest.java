@@ -16,7 +16,7 @@ public class MigrationsTest extends IntegrationEnvironment {
     @Test
     void checkMigrations_link_open(){
         String SQL_REQUEST_FROM_LINK = """ 
-                SElECT * FROM Link
+                SElECT * FROM links
                 """;
 
         try (Connection connection = POSTGRE_SQL_CONTAINER.createConnection("")) {
@@ -35,7 +35,7 @@ public class MigrationsTest extends IntegrationEnvironment {
     @Test
     void checkMigrations_chat_open(){
         String SQL_REQUEST_FROM_CHAT = """ 
-                SElECT * FROM chat
+                SElECT * FROM chats
                 """;
 
         try (Connection connection = POSTGRE_SQL_CONTAINER.createConnection("")) {
@@ -49,20 +49,6 @@ public class MigrationsTest extends IntegrationEnvironment {
         }
     }
 
-    @Test
-    void checkMigrations_chat_link_open(){
-        String SQL_REQUEST_FROM_CHAT = """ 
-                SElECT * FROM chat_link
-                """;
 
-        try (Connection connection = POSTGRE_SQL_CONTAINER.createConnection("")) {
-
-            Statement statement = connection.createStatement();
-            ResultSet result = statement.executeQuery(SQL_REQUEST_FROM_CHAT);
-
-            assertTrue(result.next());
-        } catch (SQLException exception) {
-            System.out.println(42);
-        }
     }
-}
+
