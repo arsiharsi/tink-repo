@@ -24,7 +24,7 @@ public class ScrapperLinksController {
         return new AddLinkRequest(new URI("add"));
     }
     @DeleteMapping
-    RemoveLinkRequest deletLink(@RequestHeader int id) throws URISyntaxException {
+    RemoveLinkRequest deleteLink(@RequestHeader int id) throws URISyntaxException {
         return new RemoveLinkRequest(new URI("delete"));
     }
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
