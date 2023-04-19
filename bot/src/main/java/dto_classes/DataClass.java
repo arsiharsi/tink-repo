@@ -22,4 +22,20 @@ public class DataClass {
     private String description;
     @NotNull
     private int[] tgChatIds;
+
+    public int getId() {
+        return id;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public int[] getTgChatIds() {
+        return tgChatIds;
+    }
 }
