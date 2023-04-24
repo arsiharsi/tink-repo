@@ -8,22 +8,22 @@ import org.springframework.validation.annotation.Validated;
 @Validated
 @Data
 public class DataClass {
-    public DataClass(@NotNull int id, @NotNull String url, @NotNull String description, @NotNull int[] tgChatIds){
+    public DataClass(@NotNull long id, @NotNull String url, @NotNull String description, @NotNull long tgChatIds){
         this.id = id;
         this.url = url;
         this.description = description;
         this.tgChatIds = tgChatIds;
     }
     @NotNull
-    private int id;
+    private long id;
     @NotNull
     private String url;
     @NotNull
     private String description;
     @NotNull
-    private int[] tgChatIds;
+    private long tgChatIds;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -35,7 +35,7 @@ public class DataClass {
         return description;
     }
 
-    public int[] getTgChatIds() {
+    public long getTgChatIds() {
         return tgChatIds;
     }
 }

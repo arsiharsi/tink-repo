@@ -10,9 +10,9 @@ public class BotClient {
 
     private final WebClient webClient;
 
-    public BotClient(String customeURL){
+    public BotClient(String customURL){
         webClient = WebClient.builder()
-                .baseUrl(customeURL)
+                .baseUrl(customURL)
                 .build();
     }
 

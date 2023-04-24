@@ -29,7 +29,7 @@ public class SOClient {
                 .build();
     }
 
-    SOResponse fetchQuestion(long id){
+    public SOResponse fetchQuestion(long id){
         return webClient
                 .get()
                 .uri("/questions/{id}", id)
