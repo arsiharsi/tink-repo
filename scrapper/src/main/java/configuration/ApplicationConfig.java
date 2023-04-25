@@ -13,6 +13,6 @@ import java.time.Duration;
 public record ApplicationConfig(@NotNull String test, Scheduler scheduler) {
     @Value("${app.scheduler.interval}")
     private static Duration schedulerInterval;
-
+    static AccessType databaseAccessType;
 }
 

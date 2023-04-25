@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/scrapper")
 public class ScrapperDataBaseController {
@@ -17,12 +19,12 @@ public class ScrapperDataBaseController {
     LinkLogic linkLogic;
     @GetMapping("/chats")
     @ResponseBody
-    public Page<Chat> chats(){
+    public List<Chat> chats(){
         return chatLogic.getChats();
     }
     @GetMapping("/links")
     @ResponseBody
-    public Page<Link> links(){
+    public List<Link> links(){
         return linkLogic.getLinks();
     }
 

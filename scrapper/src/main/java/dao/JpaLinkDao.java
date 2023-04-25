@@ -5,6 +5,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Query;
 import org.springframework.dao.support.DaoSupport;
+import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -12,6 +13,8 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Consumer;
 
+
+@Service
 public class JpaLinkDao implements Dao<Link>{
     private EntityManager entityManager;
 
