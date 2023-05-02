@@ -10,7 +10,7 @@ import java.time.Duration;
 
 @Validated
 @ConfigurationProperties(prefix = "app", ignoreUnknownFields = false)
-public record ApplicationConfig(@NotNull String test, Scheduler scheduler) {
+public record ApplicationConfig(@NotNull String test, Scheduler scheduler, boolean useQueue) {
     @Value("${app.scheduler.interval}")
     private static Duration schedulerInterval;
     static AccessType databaseAccessType;
