@@ -3,12 +3,14 @@ package dbServices;
 import clientBeans.BotClient;
 import clientBeans.GHClient;
 import clientBeans.SOClient;
+import services.ScrapperQueueProducer;
 import dbController.DataBaseJDBCLinkController;
 import dto_classes.DataClass;
 import dto_classes.GHResponse;
 import dto_classes.SOResponse;
 import entity.Link;
 import org.apache.catalina.LifecycleState;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.sql.Timestamp;
@@ -16,7 +18,10 @@ import java.time.ZoneOffset;
 import java.util.List;
 
 public class LinkUpdater {
+    @Value("$app.useQueue")
+    boolean usingQueue;
     BotClient botClient = new BotClient();
+    ScrapperQueueProducer scrapperQueueProducer = new ScrapperQueueProducer();
     DataBaseJDBCLinkController linkController = new DataBaseJDBCLinkController();
     JdbcTemplate template = new JdbcTemplate();
     public void updateLinks(){
@@ -30,7 +35,12 @@ public class LinkUpdater {
                 Timestamp currentStamp = Timestamp.valueOf(ghResponse.updatedAt().atZoneSameInstant(ZoneOffset.UTC).toLocalDateTime());
                 if (!currentStamp.equals(link.getDatetimestamp())) {
                     DataClass dataClass = new DataClass(link.getId(), link.getLink(),"GH Updated",link.getChatId());
-                    botClient.sendUpdate(dataClass);
+                    if (!usingQueue) {
+                        botClient.sendUpdate(dataClass);
+                    }
+                    else {
+                        scrapperQueueProducer.send(dataClass);
+                    }
                     linkController.updateLink(template,link.getId(), currentStamp);
                 }
             }
@@ -40,7 +50,12 @@ public class LinkUpdater {
                 Timestamp currentStamp = Timestamp.valueOf(soResponse.updatedAt().atZoneSameInstant(ZoneOffset.UTC).toLocalDateTime());
                 if (!soResponse.updatedAt().equals(link.getDatetimestamp())) {
                     DataClass dataClass = new DataClass(link.getId(), link.getLink(),"SO Updated",link.getChatId());
-                    botClient.sendUpdate(dataClass);
+                    if (!usingQueue) {
+                        botClient.sendUpdate(dataClass);
+                    }
+                    else {
+                        scrapperQueueProducer.send(dataClass);
+                    }
                     linkController.updateLink(template,link.getId(), currentStamp);
                 }
             }
