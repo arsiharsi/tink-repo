@@ -1,4 +1,13 @@
-D:\java\tink-repo\tink-repo\bot\src\main\java\configuration\ApplicationConfig.java
-D:\java\tink-repo\tink-repo\bot\src\main\java\app\BotApplication.java
+D:\java\tink-repo\tink-repo\bot\src\main\java\configuration\TgBotConfiguration.java
+D:\java\tink-repo\tink-repo\bot\src\main\java\tgBotClasses\TgBotMethods.java
+D:\java\tink-repo\tink-repo\bot\src\main\java\scrapperClients\ChatClient.java
+D:\java\tink-repo\tink-repo\bot\src\main\java\scrapperClients\LinkClient.java
+D:\java\tink-repo\tink-repo\bot\src\main\java\configuration\RabbitMQConfiguration.java
 D:\java\tink-repo\tink-repo\bot\src\main\java\app\BotController.java
 D:\java\tink-repo\tink-repo\bot\src\main\java\arsi\backend\App.java
+D:\java\tink-repo\tink-repo\bot\src\main\java\configuration\ApplicationConfig.java
+D:\java\tink-repo\tink-repo\bot\src\main\java\dto_classes\ApiErrorResponse.java
+D:\java\tink-repo\tink-repo\bot\src\main\java\app\BotApplication.java
+D:\java\tink-repo\tink-repo\bot\src\main\java\services\ScrapperQueueListener.java
+D:\java\tink-repo\tink-repo\bot\src\main\java\dto_classes\DataClass.java
+D:\java\tink-repo\tink-repo\bot\src\main\java\tgBotClasses\TgBot.java

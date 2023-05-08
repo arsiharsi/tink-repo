@@ -1,1 +1,5 @@
+scrapperClients\LinkClient.class
 arsi\backend\App.class
+scrapperClients\ChatClient.class
+configuration\RabbitMQConfiguration.class
+services\ScrapperQueueListener.class
