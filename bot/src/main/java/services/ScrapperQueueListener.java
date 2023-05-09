@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 @RequiredArgsConstructor
 @RabbitListener
 public class ScrapperQueueListener {
-    TgBotMethods botMethods;
+    public static TgBotMethods botMethods;
     @RabbitHandler
     public void receiver(DataClass update) {
         for (int i = 0; i < update.getTgChatIds().length; i++){

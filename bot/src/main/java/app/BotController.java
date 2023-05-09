@@ -8,17 +8,23 @@ import org.springframework.core.codec.StringDecoder;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
+import tgBotClasses.TgBotMethods;
 
 @RequestMapping("/updates")
 @RestController
 public class BotController {
 
+
+    public static TgBotMethods bot;
     @ApiResponse(responseCode = "200", description = "Обработано")
     @ApiResponse(responseCode = "400", description = "Некорректные параметры запроса")
 
 
     @PostMapping(consumes = "application/json", produces = "application/json")
     public DataClass update(@Valid @RequestBody DataClass dataClass) {
+        for (int i = 0; i < dataClass.getTgChatIds().length; i++){
+            bot.sendMessage(dataClass.getTgChatIds()[i], dataClass.getDescription());
+        }
         return new DataClass(dataClass.getId(), dataClass.getUrl(), dataClass.getDescription(), dataClass.getTgChatIds());
     }
 

@@ -15,9 +15,10 @@ import org.hibernate.validator.internal.constraintvalidators.bv.time.futureorpre
 import java.util.List;
 
 public class TgBot {
+    private TgBotMethods tgBotMethods;
     TelegramBot bot = new TelegramBot("6201413186:AAGMfU2EOz8dBCRjRd0FqSGsFXu96gOi6kA");
     public void startBot(){
-        TgBotMethods tgBotMethods = new TgBotMethods();
+        tgBotMethods = new TgBotMethods();
         tgBotMethods.setBot(bot);
         tgBotMethods.setUpdateListener();
 
@@ -28,6 +29,9 @@ public class TgBot {
         new BotCommand("list", "показать список отслеживаемых ссылок")};
         bot.execute(new SetMyCommands(botCommands));
 
+    }
+    public TgBotMethods getTgBotMethods(){
+        return this.tgBotMethods;
     }
 }
 
