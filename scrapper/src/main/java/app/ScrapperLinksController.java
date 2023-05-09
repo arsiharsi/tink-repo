@@ -10,6 +10,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 @RequestMapping("/links")
+
 @RestController
 public class ScrapperLinksController {
     @ApiResponse(responseCode = "200", description = "Чат зарегистрирован")
