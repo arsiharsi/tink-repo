@@ -20,7 +20,7 @@ jobs:
       - name: Build JAR
         run: mvn -DskipTests=true package -pl bot -am
       - name: Build Image
-        run: docker build -q -t bot_image . -f bot.Dockerfile && docker run bot_image
+        run: docker build -q -t bot_image . -f /.github/workflows/bot.Dockerfile && docker run bot_image
   push-image:
     runs-on: ubuntu-latest
     steps:
