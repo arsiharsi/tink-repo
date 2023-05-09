@@ -25,7 +25,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{github.actor}}
-          password: ${{secrets.GITHUB_TOKEN}}
+          password: ${{secrets.GIT_DOCKER_PAT}}
 
       - name: 'Push Inventory Image'
         run: |
