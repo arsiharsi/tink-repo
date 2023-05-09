@@ -19,7 +19,7 @@ jobs:
       - name: Build JAR
         run: mvn -DskipTests=true package -pl scrapper -am
       - name: Build Image
-        run: docker build -q -t scrapper_image . -f scrapper.Dockerfile && docker run scrapper_image
+        run: docker build -q -t scrapper_image . -f scrapper.Dockerfile
   push-image:
     runs-on: ubuntu-latest
     steps:

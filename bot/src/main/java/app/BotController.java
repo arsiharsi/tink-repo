@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import tgBotClasses.TgBotMethods;
 
 @RequestMapping("/updates")
-
 @RestController
 public class BotController {
 
