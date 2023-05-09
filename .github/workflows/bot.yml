@@ -12,6 +12,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Move to Upper Directory
+        run: cd ..
+      - name: Move to Upper Directory#2
+        run: cd ..
       - name: Build JAR
         run: mvn -DskipTests=true package -pl bot -am
       - name: Build Image
@@ -42,6 +46,6 @@ jobs:
           
           docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
           docker push $IMAGE_ID:$VERSION
-          docker push ghcr.io/arsiharsi/$IMAGE_NAME:latest
+          docker push ghcr.io/arsiharsi/$IMAGE_NAME
 
 
