@@ -21,9 +21,6 @@ jobs:
         run: mvn -DskipTests=true package -pl bot -am
       - name: Build Image
         run: docker build -q -t bot_image . -f bot.Dockerfile
-  push-image:
-    runs-on: ubuntu-latest
-    steps:
       - name: Log into registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
       - name: Push image

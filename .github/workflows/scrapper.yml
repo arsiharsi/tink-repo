@@ -20,9 +20,6 @@ jobs:
         run: mvn -DskipTests=true package -pl scrapper -am
       - name: Build Image
         run: docker build -q -t scrapper_image . -f scrapper.Dockerfile
-  push-image:
-    runs-on: ubuntu-latest
-    steps:
       - name: Log into registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
       - name: Push image
