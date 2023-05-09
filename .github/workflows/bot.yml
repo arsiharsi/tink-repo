@@ -10,9 +10,12 @@ env:
 
 jobs:
   build:
-    script:
-      - mvn -DskipTests=true package -pl bot -am
-      - docker build -q -t bot_image . -f bot.Dockerfile && docker run bot_image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build JAR
+        run: mvn -DskipTests=true package -pl bot -am
+      - name: Build Image
+        run: docker build -q -t bot_image . -f bot.Dockerfile && docker run bot_image
   push-image:
     runs-on: ubuntu-latest
     steps:

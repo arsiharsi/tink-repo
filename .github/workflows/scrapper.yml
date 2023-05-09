@@ -9,9 +9,12 @@ env:
 
 jobs:
   build:
-    script:
-      - mvn -DskipTests=true package -pl scrapper -am
-      - docker build -q -t scrapper_image . -f bot.Dockerfile && docker run scrapper_image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build JAR
+        run: mvn -DskipTests=true package -pl scrapper -am
+      - name: Build Image
+        run: docker build -q -t scrapper_image . -f bot.Dockerfile && docker run scrapper_image
   push-image:
     runs-on: ubuntu-latest
     steps:
