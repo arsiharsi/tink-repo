@@ -74,6 +74,7 @@ services:
     networks:
       - metrics
 
+
 volumes:
   postgres:
   rabbitmq_data:

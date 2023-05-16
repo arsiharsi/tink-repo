@@ -9,7 +9,7 @@ import reactor.core.scheduler.Scheduler;
 import java.time.Duration;
 
 @Validated
-@ConfigurationProperties(prefix = "app", ignoreUnknownFields = false)
+@ConfigurationProperties(prefix = "app")
 public record ApplicationConfig(@NotNull String test, Scheduler scheduler, boolean useQueue) {
     @Value("${app.scheduler.interval}")
     private static Duration schedulerInterval;

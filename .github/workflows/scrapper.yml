@@ -45,4 +45,4 @@ jobs:
 
       - name: Build with Maven and check
         run: mvn -pl scrapper -am checkstyle:check
-        working-directory: tink-repo
+

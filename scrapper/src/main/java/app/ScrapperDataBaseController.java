@@ -13,9 +13,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/scrapper")
 public class ScrapperDataBaseController {
-    @Autowired
+
     ChatLogic chatLogic;
-    @Autowired
+
     LinkLogic linkLogic;
     @GetMapping("/chats")
     @ResponseBody
