@@ -7,6 +7,7 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Query;
 import org.springframework.stereotype.Service;
 
+import javax.sql.DataSource;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -44,6 +45,12 @@ public class JpaChatDao implements Dao<Chat>{
     public void delete(Chat chat) {
         executeInsideTransaction(entityManager -> entityManager.remove(chat));
     }
+
+    @Override
+    public void setDataSource(DataSource ds) {
+
+    }
+
     private void executeInsideTransaction(Consumer<EntityManager> action) {
         EntityTransaction tx = entityManager.getTransaction();
         try {

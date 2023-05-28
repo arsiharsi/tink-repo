@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class LinkUpdaterScheduler {
-    @Autowired
     LinkUpdater linkUpdater = new LinkUpdater();
     @Scheduled(fixedDelayString = "#{app.scheduler.interval}")
     public void update(){

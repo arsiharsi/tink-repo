@@ -7,6 +7,7 @@ import jakarta.persistence.Query;
 import org.springframework.dao.support.DaoSupport;
 import org.springframework.stereotype.Service;
 
+import javax.sql.DataSource;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Objects;
@@ -47,6 +48,12 @@ public class JpaLinkDao implements Dao<Link>{
     public void delete(Link link) {
         executeInsideTransaction(entityManager -> entityManager.remove(link));
     }
+
+    @Override
+    public void setDataSource(DataSource ds) {
+
+    }
+
     private void executeInsideTransaction(Consumer<EntityManager> action) {
         EntityTransaction tx = entityManager.getTransaction();
         try {
