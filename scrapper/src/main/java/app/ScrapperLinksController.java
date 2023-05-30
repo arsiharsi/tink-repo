@@ -1,32 +1,44 @@
 package app;
 
+import configuration.JdbcAccessConfiguration;
+import dbController.DataBaseJDBCChatController;
+import dbController.DataBaseJDBCLinkController;
 import dto_classes.*;
+import entity.Link;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.http.HttpStatus;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
+import javax.sql.DataSource;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.List;
 
 @RequestMapping("/links")
 
 @RestController
 public class ScrapperLinksController {
+    DataSource dataSource = new JdbcAccessConfiguration().dataSource();
+    JdbcTemplate template = new JdbcTemplate(dataSource);
+    DataBaseJDBCLinkController dataBaseJDBCLinkController = new DataBaseJDBCLinkController();
     @ApiResponse(responseCode = "200", description = "Чат зарегистрирован")
     @ApiResponse(responseCode = "400", description = "Некорректные параметры запроса")
     @ApiResponse(responseCode = "404", description = "Ссылка не найдена")
-    @GetMapping
-    ListLinksResponse getLinks(@RequestHeader int id){
-        return new ListLinksResponse(new LinkResponse[1], 12);
+    @GetMapping("/{chat_id}")
+    List<Link> getLinks(@PathVariable long chat_id){
+        return dataBaseJDBCLinkController.getCertainLinks(template,chat_id);
     }
-    @PostMapping
-    AddLinkRequest addLinkRequest(@RequestHeader int id) throws URISyntaxException {
-        return new AddLinkRequest(new URI("add"));
+    @PostMapping("/{chat_id}/{url}")
+    AddLinkRequest addLinkRequest(@PathVariable int chat_id, @PathVariable String url) throws URISyntaxException {
+        dataBaseJDBCLinkController.addLink(chat_id,template,url);
+        return new AddLinkRequest(new URI(url));
     }
-    @DeleteMapping
-    RemoveLinkRequest deleteLink(@RequestHeader int id) throws URISyntaxException {
-        return new RemoveLinkRequest(new URI("delete"));
+    @DeleteMapping("/{chat_id}/{url}")
+    RemoveLinkRequest deleteLink(@PathVariable int chat_id, @PathVariable String url) throws URISyntaxException {
+        dataBaseJDBCLinkController.deleteLink(chat_id, url, template);
+        return new RemoveLinkRequest(new URI(url));
     }
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)

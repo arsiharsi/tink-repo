@@ -34,7 +34,7 @@ public class DaoTests {
         newLink.setId(0);
         newLink.setChat_id(0);
         newLink.setLink_url("asda");
-        jdbcLinkRepository.addLink(newLink.getChatId(),template,newLink);
+        jdbcLinkRepository.addLink(newLink.getChatId(),template,newLink.getLink());
         Assert.assertTrue(jdbcLinkRepository.getCertainLinks(template,0).get(0).equals(newLink));
     }
 
@@ -45,8 +45,8 @@ public class DaoTests {
         newLink.setId(0);
         newLink.setChat_id(0);
         newLink.setLink_url("asda");
-        jdbcLinkRepository.addLink(newLink.getChatId(),template,newLink);
-        jdbcLinkRepository.deleteLink(newLink,template);
+        jdbcLinkRepository.addLink(newLink.getChatId(),template,newLink.getLink());
+        jdbcLinkRepository.deleteLink(newLink.getChatId(), newLink.getLink(), template);
         Assert.assertNull(jdbcLinkRepository.getCertainLinks(template,0).get(0));
     }
     @Transactional
@@ -55,7 +55,7 @@ public class DaoTests {
         Chat newChat = new Chat();
         newChat.setId(0);
         newChat.setChat_id(0);
-        jdbcChatRepository.addChat(0,template,newChat);
+        jdbcChatRepository.addChat(0,template);
         Assert.assertTrue(jdbcChatRepository.getAllChats(template).get(0).equals(newChat));
     }
 
@@ -65,8 +65,8 @@ public class DaoTests {
         Chat newChat = new Chat();
         newChat.setId(0);
         newChat.setChat_id(0);
-        jdbcChatRepository.addChat(0,template,newChat);
-        jdbcChatRepository.deleteChat(newChat,template);
+        jdbcChatRepository.addChat(0,template);
+        jdbcChatRepository.deleteChat(0,template);
         Assert.assertNull(jdbcChatRepository.getAllChats(template).get(0));
     }
 

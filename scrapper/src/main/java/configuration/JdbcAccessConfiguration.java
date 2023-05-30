@@ -14,13 +14,13 @@ import javax.sql.DataSource;
 @ConditionalOnProperty(prefix = "app", name = "database-access-type", havingValue = "jdbc")
 public class JdbcAccessConfiguration {
         @Value("${spring.datasource.driver-class-name}")
-        String driver;
+        String driver = "org.postgresql.Driver";
     @Value("${spring.datasource.url}")
-    String url;
+    String url= "jdbc:postgresql://localhost:5432/scrapper";
     @Value("spring.datasource.username}")
-    String user;
+    String user = "postgres";
     @Value("${spring.datasource.password}")
-    String password;
+    String password = "postgres";
 
     @Bean
         public DataSource dataSource() {
