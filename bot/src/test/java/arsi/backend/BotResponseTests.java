@@ -14,11 +14,11 @@ public class BotResponseTests {
     @Test
     public void ListExistsResponseTest(){
         tgBotMethods.setHasList(true);
-        Assert.assertEquals("Список",tgBotMethods.getResponse("/list"));
+        Assert.assertEquals("Список",tgBotMethods.getResponse("/list",0));
     }
     @Test
     public void ListNotExistsResponseTest(){
         tgBotMethods.setHasList(false);
-        Assert.assertEquals("Нет списка",tgBotMethods.getResponse("/list"));
+        Assert.assertEquals("Нет списка",tgBotMethods.getResponse("/list",0));
     }
 }

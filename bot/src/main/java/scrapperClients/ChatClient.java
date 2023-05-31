@@ -3,9 +3,10 @@ package scrapperClients;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.reactive.function.client.WebClientResponseException;
 
 public class ChatClient {
-    private static final String CHAT_BASE_URL = "https://localhost:8080/tg-chat";
+    private static final String CHAT_BASE_URL = "http://localhost:8082/tg-chat";
     private WebClient webClient;
     private String URL;
     public ChatClient(){
@@ -23,13 +24,23 @@ public class ChatClient {
                 .build();
     }
     public void addChat(long id){
-        webClient
+        try {
+            webClient
                 .post()
-                .uri("/{id}", id);
+                .uri("/" + id).retrieve().toBodilessEntity().block();
+        }
+        catch (WebClientResponseException e){
+            System.out.println("a");
+        }
     }
     public void deleteChat(long id){
-        webClient
+        try {
+            webClient
                 .delete()
-                .uri("/{id}", id);
+                .uri("/" + id).retrieve().toBodilessEntity().block();
+        }
+        catch (WebClientResponseException e){
+            System.out.println("a");
+        }
     }
 }

@@ -54,7 +54,7 @@ public class SOClient {
                 .get()
                 .uri("/questions/{id}?order=desc&sort=activity&site=stackoverflow", id)
                 .accept(MediaType.APPLICATION_JSON)
-                .header(HttpHeaders.ACCEPT_ENCODING, "gzip")
+                .header(HttpHeaders.ACCEPT_ENCODING, "deflate")
                 .retrieve()
                 .bodyToMono(SOResponse.class)
                 .block();

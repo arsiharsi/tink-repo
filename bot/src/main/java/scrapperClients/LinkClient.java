@@ -1,10 +1,12 @@
 package scrapperClients;
 
+import dto_classes.Link;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.reactive.function.client.WebClientResponseException;
 
 public class LinkClient {
-    private static final String CHAT_BASE_URL = "https://localhost:8080/links";
+    private static final String CHAT_BASE_URL = "http://localhost:8082/links";
     private WebClient webClient;
     private String URL;
     public LinkClient(){
@@ -21,20 +23,32 @@ public class LinkClient {
                 .defaultHeader("Content-Type", MediaType.APPLICATION_JSON_VALUE)
                 .build();
     }
-    public void addLink(long id){
-        webClient
+    public void addLink(long chat_id,String url){
+        try {
+            webClient
                 .post()
-                .header("id", String.valueOf(id));
+                .uri("/{chat_id}/{url}", chat_id, url).retrieve().toBodilessEntity().block();
+        }
+        catch (WebClientResponseException e){
+            System.out.println("a");
+        }
     }
-    public void deleteLink(long id){
-        webClient
+    public void deleteLink(long chat_id,String url){
+        try {
+            webClient
                 .delete()
-                .header("id", String.valueOf(id));
+                .uri("/{chat_id}/{url}", chat_id, url).retrieve().toBodilessEntity().block();
+        }
+        catch (WebClientResponseException e){
+            System.out.println("a");
+        }
     }
-    public void getLink(long id){
-        webClient
+    public Link[] getLink(long chat_id){
+        return webClient
                 .get()
-                .header("id", String.valueOf(id));
+                .uri("/{chat_id}", chat_id)
+            .retrieve().bodyToMono(Link[].class)
+            .block();
     }
 
 }
