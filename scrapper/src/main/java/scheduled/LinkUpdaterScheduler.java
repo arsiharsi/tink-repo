@@ -2,6 +2,7 @@ package scheduled;
 
 import dbServices.LinkUpdater;
 import lombok.RequiredArgsConstructor;
+
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;

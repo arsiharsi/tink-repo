@@ -4,6 +4,7 @@ D:\java\tink-repo\tink-repo\bot\src\main\java\scrapperClients\ChatClient.java
 D:\java\tink-repo\tink-repo\bot\src\main\java\scrapperClients\LinkClient.java
 D:\java\tink-repo\tink-repo\bot\src\main\java\configuration\RabbitMQConfiguration.java
 D:\java\tink-repo\tink-repo\bot\src\main\java\app\BotController.java
+D:\java\tink-repo\tink-repo\bot\src\main\java\dto_classes\Link.java
 D:\java\tink-repo\tink-repo\bot\src\main\java\arsi\backend\App.java
 D:\java\tink-repo\tink-repo\bot\src\main\java\configuration\ApplicationConfig.java
 D:\java\tink-repo\tink-repo\bot\src\main\java\dto_classes\ApiErrorResponse.java

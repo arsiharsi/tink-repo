@@ -35,8 +35,8 @@ public class DataBaseJDBCLinkController{
         template.update("INSERT INTO links(id, chat_id, link_url, datetimestamp) VALUES(?,?,?,?)", id, chat_id, newLink,currentStamp);
     }
     public void deleteLink(long chat_id, String link, JdbcTemplate template) {
-        link.replace(",","/");
-        template.update("DELETE FROM links WHERE chat_id = ? AND link_url = ?", chat_id, link);
+        String newLink = link.replace(",","/");
+        template.update("DELETE FROM links WHERE chat_id = ? AND link_url = ?", chat_id, newLink);
     }
     public void updateLink(JdbcTemplate template, long id, Timestamp newTimestamp){
         template.update("UPDATE links SET datetimestamp = ? WHERE id = ?", newTimestamp, id);
